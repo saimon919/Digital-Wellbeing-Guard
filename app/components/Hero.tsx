@@ -82,7 +82,7 @@ export function Hero() {
             transition={{ type: 'spring', stiffness: 200, damping: 22, delay: 0.24 }}
             className="mt-8 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4"
           >
-            <ClayButton href="/app-debug.apk" download>
+            <ClayButton href="/DigitalWellbeingGuard.apk" download>
               <Download className="w-5 h-5" />
               Download Free
             </ClayButton>

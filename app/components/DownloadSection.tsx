@@ -39,7 +39,7 @@ export function DownloadSection() {
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 relative">
-                <ClayButton href="/app-debug.apk" download className="!px-8">
+                <ClayButton href="/DigitalWellbeingGuard.apk" download className="!px-8">
                   <Download className="w-5 h-5" />
                   Download APK
                 </ClayButton>

@@ -8,7 +8,7 @@ type ClayButtonProps = {
   variant?: 'primary' | 'secondary';
   className?: string;
   href?: string;
-  download?: boolean;
+  download?: boolean | string;
   onClick?: () => void;
 };
 
@@ -37,7 +37,7 @@ export function ClayButton({
 
   if (href) {
     return (
-      <a href={href} download={download} rel={download ? undefined : 'noopener noreferrer'}>
+      <a href={href} download={download || undefined} rel={download ? undefined : 'noopener noreferrer'}>
         {button}
       </a>
     );
