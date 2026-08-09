@@ -68,9 +68,7 @@ export function Footer() {
           <p className="font-mono text-[11px] text-muted">
             © {new Date().getFullYear()} Digital Wellbeing Guard
           </p>
-          <p className="font-mono text-[11px] text-muted">
-            Built by hand, one commit at a time. Android is a trademark of Google LLC.
-          </p>
+          <p className="font-mono text-[11px] text-muted">Made by INFINITTE INTERACTIVE</p>
         </div>
       </div>
     </footer>
