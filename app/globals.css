@@ -3,15 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #eef2f7;
-  --foreground: #1a2332;
-  --muted: #64748b;
-  --accent: #ff6b6b;
-  --accent-dark: #e85555;
-  --surface: #fff;
-  --clay-shadow: rgba(166, 180, 200, 0.35);
-  --clay-inset-light: hsla(0, 0%, 100%, 0.9);
-  --clay-inset-dark: rgba(166, 180, 200, 0.2);
+  --paper: #f4f1e8;
+  --ink: #211c14;
+  --muted: #6e6555;
+  --line: #e0d9c8;
+  --card: #fdfcf8;
+  --accent: #e4572e;
+  --accent-deep: #c6431d;
+  --accent-soft: #f8e7dd;
+  --sage: #5c7a55;
+  --sage-soft: #e4ebe0;
+  --panel: #211c14;
 }
 
 * {
@@ -23,9 +25,91 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--ink);
+  background: var(--paper);
   overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* Thin, quiet scrollbar that matches the palette (WebKit only; harmless elsewhere) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6ceba;
+  border-radius: 8px;
+  border: 2px solid var(--paper);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c2b9a1;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-semibold select-none cursor-pointer transition-all duration-200;
+    border-radius: 14px;
+    letter-spacing: -0.01em;
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--accent);
+  }
+
+  .btn-solid {
+    background: var(--accent);
+    color: #fff;
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.12),
+      0 10px 24px -10px rgba(228, 87, 46, 0.55);
+  }
+  .btn-solid:hover {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.12),
+      0 14px 28px -10px rgba(228, 87, 46, 0.6);
+  }
+  .btn-solid:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover {
+    border-color: rgba(33, 28, 20, 0.35);
+    background: #fff;
+    transform: translateY(-1px);
+  }
+  .btn-ghost:active {
+    transform: translateY(0);
+  }
+
+  .btn-light {
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .btn-light:hover {
+    background: #f1ede2;
+    transform: translateY(-1px);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted;
+  }
 }
 
 @layer utilities {
@@ -33,56 +117,30 @@ body {
     text-wrap: balance;
   }
 
-  .gradient-bg {
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, hsla(0, 100%, 71%, 0.12) 0, transparent 60%),
-      radial-gradient(ellipse 70% 50% at 80% 20%, rgba(99, 179, 237, 0.1) 0, transparent 55%),
-      radial-gradient(ellipse 60% 40% at 50% 90%, rgba(167, 139, 250, 0.08) 0, transparent 50%),
-      #eef2f7;
+  /* Faint paper grain — the texture that keeps flat colour from feeling sterile */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-
-  .clay-card {
-    background: #fff;
-    border-radius: 2rem;
-    box-shadow:
-      8px 16px 28px -4px rgba(166, 180, 200, 0.35),
-      inset 3px 3px 6px 0 hsla(0, 0%, 100%, 0.9),
-      inset -4px -4px 8px 0 rgba(166, 180, 200, 0.2);
+  .noise-dark::after {
+    opacity: 0.08;
+    mix-blend-mode: overlay;
   }
+}
 
-  .clay-btn-primary {
-    background: #ff6b6b;
-    border-radius: 1.5rem;
-    box-shadow:
-      6px 12px 20px -2px hsla(0, 100%, 71%, 0.4),
-      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.4),
-      inset -3px -3px 6px 0 rgba(180, 40, 40, 0.3);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-
-  .clay-btn-secondary {
-    background: #fff;
-    border-radius: 1.5rem;
-    box-shadow:
-      6px 12px 20px -2px rgba(166, 180, 200, 0.35),
-      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.9),
-      inset -3px -3px 6px 0 rgba(166, 180, 200, 0.2);
-  }
-
-  .clay-pill {
-    background: #fff;
-    border-radius: 9999px;
-    box-shadow:
-      4px 8px 16px -2px rgba(166, 180, 200, 0.3),
-      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.9),
-      inset -2px -2px 4px 0 rgba(166, 180, 200, 0.15);
-  }
-
-  .clay-icon {
-    background: linear-gradient(145deg, #fff5f5, #ffe8e8);
-    border-radius: 1.25rem;
-    box-shadow:
-      4px 8px 16px -2px hsla(0, 100%, 71%, 0.25),
-      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.8),
-      inset -2px -2px 4px 0 hsla(0, 100%, 71%, 0.15);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

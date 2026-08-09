@@ -1,49 +1,59 @@
 import { Shield } from 'lucide-react';
 
-const footerLinks = {
-  Product: [
-    { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Download', href: '#download' },
-  ],
-  Company: [
-    { label: 'About', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'Careers', href: '#' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-  ],
-};
+const linkGroups = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Features', href: '#features' },
+      { label: 'How it works', href: '#how-it-works' },
+      { label: 'Reviews', href: '#reviews' },
+      { label: 'Download', href: '#download' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '#' },
+      { label: 'Blog', href: '#' },
+      { label: 'Contact', href: '#' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Terms of Service', href: '#' },
+    ],
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#dde4ed]/60">
+    <footer className="border-t border-line px-4 sm:px-6 lg:px-8 pt-14 pb-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="clay-icon p-1.5">
-                <Shield className="w-4 h-4 text-[#FF6B6B]" strokeWidth={2.5} />
-              </div>
-              <span className="font-bold text-sm text-foreground">Digital Wellbeing Guard</span>
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2 max-w-xs">
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="flex h-7 w-7 items-center justify-center rounded-[9px] bg-accent text-white">
+                <Shield className="h-3.5 w-3.5" strokeWidth={2.4} />
+              </span>
+              <span className="font-semibold text-sm tracking-tight">Digital Wellbeing Guard</span>
             </div>
             <p className="text-sm text-muted leading-relaxed">
-              Helping you build a healthier relationship with technology, one mindful moment at a
-              time.
+              A small Android app for people who&rsquo;d rather own their attention. Built slowly,
+              on purpose.
             </p>
           </div>
 
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-sm font-bold text-foreground mb-3">{title}</h4>
-              <ul className="space-y-2">
-                {links.map((link) => (
+          {linkGroups.map((group) => (
+            <div key={group.title}>
+              <h4 className="eyebrow mb-4">{group.title}</h4>
+              <ul className="space-y-2.5">
+                {group.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted hover:text-[#FF6B6B] transition-colors"
+                      className="text-sm text-muted hover:text-ink transition-colors"
                     >
                       {link.label}
                     </a>
@@ -54,11 +64,13 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="pt-6 border-t border-[#dde4ed]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted">
-            © {new Date().getFullYear()} Digital Wellbeing Guard. All rights reserved.
+        <div className="mt-12 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-mono text-[11px] text-muted">
+            © {new Date().getFullYear()} Digital Wellbeing Guard
           </p>
-          <p className="text-xs text-muted">Made with care for your attention.</p>
+          <p className="font-mono text-[11px] text-muted">
+            Built by hand, one commit at a time. Android is a trademark of Google LLC.
+          </p>
         </div>
       </div>
     </footer>

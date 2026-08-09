@@ -1,55 +1,65 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Shield } from 'lucide-react';
-import { ClayButton } from './ClayButton';
-import { FloatElement } from './FloatElement';
+import { FileDown } from 'lucide-react';
+import { Button } from './Button';
+
+const meta = [
+  { label: 'Version', value: '1.0.0' },
+  { label: 'Size', value: '18.9 MB' },
+  { label: 'Requires', value: 'Android 8.0+' },
+  { label: 'License', value: 'Free, forever' },
+];
 
 export function DownloadSection() {
   return (
-    <section id="download" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section id="download" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-          className="relative"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden rounded-[2rem] bg-panel text-paper noise noise-dark px-6 py-16 sm:p-16 text-center"
         >
-          <FloatElement duration={6} y={8}>
-            <div className="clay-card p-8 sm:p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B6B]/5 via-transparent to-[#63B3ED]/5 pointer-events-none" />
+          {/* Decorative ring */}
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[34rem] rounded-full border border-paper/10" />
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-40 w-[20rem] rounded-full border border-paper/10" />
 
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.1 }}
-                className="clay-icon w-16 h-16 flex items-center justify-center mx-auto mb-6 relative"
-              >
-                <Shield className="w-8 h-8 text-[#FF6B6B]" strokeWidth={2} />
-              </motion.div>
+          <div className="relative">
+            <p className="eyebrow inline-flex items-center gap-2 mb-5 !text-paper/60">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Get the app
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl font-medium tracking-tight leading-[1.08] text-balance">
+              Download the <em className="italic text-accent">APK</em>.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-paper/70 text-base sm:text-lg leading-relaxed">
+              Direct download, no account, no tracking. This is the same signed release that will
+              ship to the Play Store — it just lives here first.
+            </p>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight text-balance relative">
-                Start guarding your wellbeing today
-              </h2>
-              <p className="mt-4 text-muted max-w-lg mx-auto text-base sm:text-lg relative">
-                Free to download. No credit card. Join 500,000+ Android users building healthier
-                digital habits.
-              </p>
+            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 sm:grid-cols-4 divide-x divide-paper/10 rounded-2xl border border-paper/10 bg-paper/[0.04]">
+              {meta.map((m) => (
+                <div key={m.label} className="px-4 py-4">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/50">
+                    {m.label}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-paper">{m.value}</p>
+                </div>
+              ))}
+            </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 relative">
-                <ClayButton href="/DigitalWellbeingGuard.apk" download className="!px-8">
-                  <Download className="w-5 h-5" />
-                  Download APK
-                </ClayButton>
-              </div>
-
-              <p className="mt-6 text-xs text-muted relative">
-                Requires Android 8.0+ · Free with optional Pro upgrade
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <Button href="/DigitalWellbeingGuard.apk" download size="lg" className="!px-9">
+                <FileDown className="h-5 w-5" strokeWidth={2.2} />
+                Download DigitalWellbeingGuard.apk
+              </Button>
+              <p className="font-mono text-[11px] text-paper/50">
+                Play Store listing coming soon · install from unknown sources enabled
               </p>
             </div>
-          </FloatElement>
+          </div>
         </motion.div>
       </div>
     </section>

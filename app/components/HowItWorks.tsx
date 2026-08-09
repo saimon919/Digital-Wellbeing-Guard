@@ -1,95 +1,76 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, LineChart, Settings, Target, type LucideIcon } from 'lucide-react';
 
-const steps: {
-  step: string;
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}[] = [
+const steps = [
   {
-    step: '01',
-    icon: Download,
-    title: 'Install & Connect',
+    title: 'Install the APK',
     description:
-      'Download from Google Play and grant permissions. Setup takes under 60 seconds.',
+      'Download it from this page and open the file. Android will ask you to allow “install from unknown sources” — that’s normal.',
   },
   {
-    step: '02',
-    icon: Target,
-    title: 'Set Your Goals',
+    title: 'Grant two permissions',
     description:
-      'Choose daily limits, pick focus schedules, and tell us what matters most to you.',
+      'Usage access and notification access, so the guard can see what you see. The data never leaves your phone.',
   },
   {
-    step: '03',
-    icon: LineChart,
-    title: 'Track Progress',
+    title: 'Set your limits',
     description:
-      'Watch your screen time drop with real-time dashboards and weekly wellness scores.',
+      'Pick per-app caps and focus schedules. The defaults are sensible, so you can skip this step entirely if you want.',
   },
   {
-    step: '04',
-    icon: Settings,
-    title: 'Fine-Tune & Thrive',
+    title: 'Breathe',
     description:
-      'Adjust rules as habits form. The app learns and adapts to keep you on track.',
+      'That’s it. Start with the defaults, then tune things as you notice what actually works for you.',
   },
 ];
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+};
+
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute inset-0 gradient-bg opacity-50 -z-10" />
-
+    <section id="how-it-works" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14"
         >
-          <span className="clay-pill inline-block px-4 py-1.5 text-xs font-semibold text-[#63B3ED] mb-4">
-            How It Works
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-            Four steps to digital freedom
+          <p className="eyebrow mb-4">Setup</p>
+          <h2 className="font-display text-4xl sm:text-5xl font-medium tracking-tight leading-[1.08] text-balance">
+            Up and running in <em className="italic text-accent">five minutes</em>.
           </h2>
-          <p className="mt-4 text-muted max-w-xl mx-auto">
-            No complicated setup. No subscription required to get started.
-          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          <div className="hidden lg:block absolute top-[3.5rem] left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-transparent via-[#FF6B6B]/30 to-transparent" />
-
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.step}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ type: 'spring', stiffness: 200, damping: 22, delay: index * 0.1 }}
-              className="relative text-center"
-            >
-              <div className="clay-card p-6 h-full flex flex-col items-center">
-                <div className="relative mb-5">
-                  <div className="clay-icon w-14 h-14 flex items-center justify-center mx-auto">
-                    <step.icon className="w-6 h-6 text-[#FF6B6B]" strokeWidth={2} />
-                  </div>
-                  <span className="absolute -top-2 -right-2 clay-pill w-7 h-7 flex items-center justify-center text-[10px] font-bold text-[#FF6B6B]">
-                    {step.step}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">{step.description}</p>
-              </div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 relative"
+        >
+          <div className="hidden lg:block absolute top-3 left-0 right-0 h-px bg-line" />
+          {steps.map((step, i) => (
+            <motion.div key={step.title} variants={item} className="relative">
+              <div className="hidden lg:flex absolute -top-3 left-0 h-1.5 w-1.5 rounded-full bg-accent -translate-y-1/2" />
+              <p className="font-mono text-[11px] text-accent mb-3">
+                Step {String(i + 1).padStart(2, '0')}
+              </p>
+              <h3 className="text-lg font-semibold tracking-tight">{step.title}</h3>
+              <p className="mt-2 text-sm text-muted leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

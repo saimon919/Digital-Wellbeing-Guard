@@ -2,131 +2,114 @@
 
 import { motion } from 'framer-motion';
 import {
-  BarChart3,
   BellOff,
-  Clock,
-  Lock,
+  Clock3,
+  Coins,
   Moon,
+  ScrollText,
   Users,
   type LucideIcon,
 } from 'lucide-react';
-import { TiltCard } from './TiltCard';
 
 const features: {
   icon: LucideIcon;
   title: string;
   description: string;
-  color: string;
 }[] = [
   {
-    icon: Clock,
-    title: 'Smart Screen Limits',
+    icon: Clock3,
+    title: 'Daily app limits',
     description:
-      'Set daily caps per app with gentle nudges — not harsh blocks. Your rules, your pace.',
-    color: '#FF6B6B',
+      'Set a cap per app. When you hit it, you get a gentle nudge — never a locked screen. You stay in control.',
   },
   {
     icon: Moon,
-    title: 'Focus Modes',
+    title: 'Focus modes',
     description:
-      'One tap to silence distractions. Work, study, sleep — each mode tailored to your goals.',
-    color: '#63B3ED',
+      'One tap to go quiet. Work, reading, sleep — each mode silences the apps that pull you away, and nothing else.',
   },
   {
-    icon: BarChart3,
-    title: 'Beautiful Insights',
+    icon: ScrollText,
+    title: 'Honest weekly reports',
     description:
-      'See where your time goes with gorgeous weekly reports and streak tracking.',
-    color: '#A78BFA',
+      'A plain-language recap of where your time went. Numbers you can actually understand, without the shame spiral.',
   },
   {
     icon: BellOff,
-    title: 'Notification Guard',
+    title: 'Notification bundling',
     description:
-      'Batch and schedule alerts so your phone stops interrupting your real life.',
-    color: '#48BB78',
+      'Batch your alerts into a few check-ins a day, so your phone stops interrupting everything else.',
   },
   {
-    icon: Lock,
-    title: 'App Lock & Pause',
+    icon: Coins,
+    title: 'Cooldowns',
     description:
-      'Take a breather from addictive apps with cooldown timers and friction prompts.',
-    color: '#ED8936',
+      'Caught in a doomscroll loop? The app suggests a two-minute pause. You can always say no — it just asks.',
   },
   {
     icon: Users,
-    title: 'Family Dashboard',
+    title: 'Family view',
     description:
-      'Help loved ones build healthy habits with shared goals and gentle accountability.',
-    color: '#F687B3',
+      'See your household’s screen time at a glance, and set shared goals that respect everyone’s autonomy.',
   },
 ];
 
-const containerVariants = {
+const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+  show: { transition: { staggerChildren: 0.07 } },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring' as const, stiffness: 200, damping: 22 },
-  },
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 export function Features() {
   return (
-    <section id="features" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="features" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14"
         >
-          <span className="clay-pill inline-block px-4 py-1.5 text-xs font-semibold text-[#FF6B6B] mb-4">
-            Features
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight text-balance">
-            Everything you need to take control
+          <p className="eyebrow mb-4">What it does</p>
+          <h2 className="font-display text-4xl sm:text-5xl font-medium tracking-tight text-balance leading-[1.08]">
+            A quiet toolkit for a{' '}
+            <em className="italic text-accent">calmer screen life</em>.
           </h2>
-          <p className="mt-4 text-muted max-w-2xl mx-auto text-base sm:text-lg">
-            Powerful tools wrapped in a calm, tactile interface — designed to help you build
-            lasting digital wellness habits.
+          <p className="mt-5 text-muted text-base sm:text-lg leading-relaxed max-w-xl">
+            Six small features, each boring in the best way. Together they add up to a phone that
+            waits for you instead of the other way round.
           </p>
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {features.map((feature) => (
-            <motion.div key={feature.title} variants={itemVariants}>
-              <TiltCard tiltStrength={8}>
-                <div className="clay-card p-6 h-full hover:translate-y-[-2px] transition-transform duration-300">
-                  <div
-                    className="clay-icon w-12 h-12 flex items-center justify-center mb-4"
-                    style={{
-                      background: `linear-gradient(145deg, ${feature.color}15, ${feature.color}25)`,
-                    }}
-                  >
-                    <feature.icon
-                      className="w-6 h-6"
-                      style={{ color: feature.color }}
-                      strokeWidth={2}
-                    />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{feature.description}</p>
-                </div>
-              </TiltCard>
-            </motion.div>
+          {features.map((feature, i) => (
+            <motion.article
+              key={feature.title}
+              variants={item}
+              className="group card p-6 sm:p-7 hover:-translate-y-1 transition-all duration-300 hover:shadow-lift hover:border-ink/20"
+            >
+              <div className="flex items-center justify-between mb-10">
+                <span className="font-mono text-[11px] text-muted group-hover:text-accent transition-colors">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                  <feature.icon className="h-5 w-5" strokeWidth={2} />
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold tracking-tight">{feature.title}</h3>
+              <p className="mt-2 text-sm text-muted leading-relaxed">{feature.description}</p>
+            </motion.article>
           ))}
         </motion.div>
       </div>
