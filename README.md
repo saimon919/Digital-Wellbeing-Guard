@@ -25,12 +25,13 @@ npm run start
 
 ## The download artifact
 
-The Download buttons point at `/DigitalWellbeingGuard.apk`, which is served from
-`public/DigitalWellbeingGuard.apk`. To ship a new build:
+The Download buttons point at `/zfocus-v1.0.0-release.apk`, which is served from
+`public/zfocus-v1.0.0-release.apk`. To ship a new build:
 
-1. Replace `public/DigitalWellbeingGuard.apk` with the new signed APK.
-2. Update the version/size metadata in `app/components/DownloadSection.tsx`.
-3. Rebuild and verify: `curl -sI http://localhost:3000/DigitalWellbeingGuard.apk`
+1. Replace `public/zfocus-v1.0.0-release.apk` with the new signed APK (name it `<app>-v<version>-release.apk`).
+2. Update the filename in `app/components/Hero.tsx` + `app/components/DownloadSection.tsx`, and the
+   version/size metadata in `app/components/DownloadSection.tsx`.
+3. Rebuild and verify: `curl -sI http://localhost:3000/zfocus-v1.0.0-release.apk`
 
 ## Structure
 

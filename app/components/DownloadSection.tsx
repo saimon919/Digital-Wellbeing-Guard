@@ -6,7 +6,7 @@ import { Button } from './Button';
 
 const meta = [
   { label: 'Version', value: '1.0.0' },
-  { label: 'Size', value: '18.9 MB' },
+  { label: 'Size', value: '12.1 MB' },
   { label: 'Requires', value: 'Android 8.0+' },
   { label: 'License', value: 'Free, forever' },
 ];
@@ -51,9 +51,9 @@ export function DownloadSection() {
             </div>
 
             <div className="mt-10 flex flex-col items-center gap-4">
-              <Button href="/DigitalWellbeingGuard.apk" download size="lg" className="!px-9">
+              <Button href="/zfocus-v1.0.0-release.apk" download size="lg" className="!px-9">
                 <FileDown className="h-5 w-5" strokeWidth={2.2} />
-                Download DigitalWellbeingGuard.apk
+                Download zfocus-v1.0.0-release.apk
               </Button>
               <p className="font-mono text-[11px] text-paper/50">
                 Play Store listing coming soon · install from unknown sources enabled

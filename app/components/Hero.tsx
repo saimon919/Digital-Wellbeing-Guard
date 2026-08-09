@@ -80,7 +80,7 @@ export function Hero() {
               custom={3}
               className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4"
             >
-              <Button href="/DigitalWellbeingGuard.apk" download size="lg">
+              <Button href="/zfocus-v1.0.0-release.apk" download size="lg">
                 <Download className="h-5 w-5" strokeWidth={2.2} />
                 Download the APK
               </Button>
@@ -97,7 +97,7 @@ export function Hero() {
               custom={4}
               className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted"
             >
-              Android 8.0+ · 18.9 MB · direct download
+              Android 8.0+ · 12.1 MB · release-signed
             </motion.p>
           </div>
 

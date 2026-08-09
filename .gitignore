@@ -24,3 +24,4 @@ npm-debug.log*
 
 # agent workspace (preview logs, run docs)
 .freebuff/
+.vercel
