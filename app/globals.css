@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #eef2f7;
+  --foreground: #1a2332;
+  --muted: #64748b;
+  --accent: #ff6b6b;
+  --accent-dark: #e85555;
+  --surface: #fff;
+  --clay-shadow: rgba(166, 180, 200, 0.35);
+  --clay-inset-light: hsla(0, 0%, 100%, 0.9);
+  --clay-inset-dark: rgba(166, 180, 200, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-bg {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, hsla(0, 100%, 71%, 0.12) 0, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 80% 20%, rgba(99, 179, 237, 0.1) 0, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 50% 90%, rgba(167, 139, 250, 0.08) 0, transparent 50%),
+      #eef2f7;
+  }
+
+  .clay-card {
+    background: #fff;
+    border-radius: 2rem;
+    box-shadow:
+      8px 16px 28px -4px rgba(166, 180, 200, 0.35),
+      inset 3px 3px 6px 0 hsla(0, 0%, 100%, 0.9),
+      inset -4px -4px 8px 0 rgba(166, 180, 200, 0.2);
+  }
+
+  .clay-btn-primary {
+    background: #ff6b6b;
+    border-radius: 1.5rem;
+    box-shadow:
+      6px 12px 20px -2px hsla(0, 100%, 71%, 0.4),
+      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.4),
+      inset -3px -3px 6px 0 rgba(180, 40, 40, 0.3);
+  }
+
+  .clay-btn-secondary {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow:
+      6px 12px 20px -2px rgba(166, 180, 200, 0.35),
+      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.9),
+      inset -3px -3px 6px 0 rgba(166, 180, 200, 0.2);
+  }
+
+  .clay-pill {
+    background: #fff;
+    border-radius: 9999px;
+    box-shadow:
+      4px 8px 16px -2px rgba(166, 180, 200, 0.3),
+      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.9),
+      inset -2px -2px 4px 0 rgba(166, 180, 200, 0.15);
+  }
+
+  .clay-icon {
+    background: linear-gradient(145deg, #fff5f5, #ffe8e8);
+    border-radius: 1.25rem;
+    box-shadow:
+      4px 8px 16px -2px hsla(0, 100%, 71%, 0.25),
+      inset 2px 2px 4px 0 hsla(0, 0%, 100%, 0.8),
+      inset -2px -2px 4px 0 hsla(0, 100%, 71%, 0.15);
+  }
+}
